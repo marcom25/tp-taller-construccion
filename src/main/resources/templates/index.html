@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced TODO App</title>
+    <style src="../static/styles.css"></style>
+</head>
+<body>
+    <h1>Advanced TODO App</h1>
+    <div class="input-group">
+        <input type="text" placeholder="Enter new TODO title">
+        <button>Add TODO</button>
+    </div>
+    <div class="todo-list">
+        <div class="todo-item">
+            <div class="todo-header">
+                <span class="todo-title">Sample TODO 1</span>
+                <div class="todo-actions">
+                    <button aria-label="Edit TODO">✏️</button>
+                    <button aria-label="Delete TODO">🗑️</button>
+                    <button aria-label="Toggle tasks visibility">▼</button>
+                </div>
+            </div>
+            <ul class="task-list">
+                <li class="task-item">
+                    <input type="checkbox" id="task1">
+                    <label for="task1">Sample task 1</label>
+                    <button aria-label="Edit task">✏️</button>
+                    <button aria-label="Delete task">🗑️</button>
+                </li>
+                <li class="task-item">
+                    <input type="checkbox" id="task2">
+                    <label for="task2">Sample task 2</label>
+                    <button aria-label="Edit task">✏️</button>
+                    <button aria-label="Delete task">🗑️</button>
+                </li>
+            </ul>
+            <div class="input-group">
+                <input type="text" placeholder="Add new task">
+                <button>+</button>
+            </div>
+        </div>
+        <div class="todo-item">
+            <div class="todo-header">
+                <span class="todo-title">Sample TODO 2</span>
+                <div class="todo-actions">
+                    <button aria-label="Edit TODO">✏️</button>
+                    <button aria-label="Delete TODO">🗑️</button>
+                    <button aria-label="Toggle tasks visibility">▼</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
