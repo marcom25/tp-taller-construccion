@@ -16,10 +16,10 @@ public class TODOListController {
     @Autowired
     private TODOListService todoListService;
 
-    @GetMapping
+    @GetMapping("/")
     public String getAllTODOLists(Model model) {
         model.addAttribute("todoLists", todoListService.getAllTODOLists());
-        return "todo_list"; // Vista con la lista de listas
+        return "index";
     }
 
     @GetMapping("/{id}")
@@ -27,9 +27,9 @@ public class TODOListController {
         Optional<TODOList> todoList = todoListService.getTODOListById(id);
         if (todoList.isPresent()) {
             model.addAttribute("todoList", todoList.get());
-            return "todo_list_detail"; // Vista para detalles de la lista
+            return "todo_list_detail";
         }
-        return "todo_list_not_found"; // Vista de error
+        return "todo_list_not_found";
     }
 
     @PostMapping
