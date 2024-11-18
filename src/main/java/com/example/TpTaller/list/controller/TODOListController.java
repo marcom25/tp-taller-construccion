@@ -7,10 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/todolist")
 public class TODOListController {
 
     @Autowired
@@ -18,29 +18,32 @@ public class TODOListController {
 
     @GetMapping
     public String getAllTODOLists(Model model) {
-        model.addAttribute("todoLists", todoListService.getAllTODOLists());
-        return "todo_list"; // Vista con la lista de listas
+        List<TODOList> todoLists = todoListService.getAllTODOLists();
+        model.addAttribute("todoLists", todoLists);
+        return "index";
     }
 
-    @GetMapping("/{id}")
-    public String getTODOListById(@PathVariable("id") Long id, Model model) {
-        Optional<TODOList> todoList = todoListService.getTODOListById(id);
-        if (todoList.isPresent()) {
-            model.addAttribute("todoList", todoList.get());
-            return "todo_list_detail"; // Vista para detalles de la lista
-        }
-        return "todo_list_not_found"; // Vista de error
-    }
+//    @GetMapping("/{id}")
+//    public String getTODOListById(@PathVariable("id") Long id, Model model) {
+//        Optional<TODOList> todoList = todoListService.getTODOListById(id);
+//        if (todoList.isPresent()) {
+//            model.addAttribute("todoList", todoList.get());
+//            return "todo_list_detail"; // Vista para detalles de la lista
+//        }
+//        return "todo_list_not_found"; // Vista de error
+//    }
 
     @PostMapping
-    public String createOrUpdateTODOList(@ModelAttribute TODOList todoList) {
-        todoListService.createOrUpdateTODOList(todoList);
-        return "redirect:/todolist";
+    public String createOrUpdateTODOList(@RequestParam String name) {
+        todoListService.createTODOList(name);
+        return "redirect:/";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/{id}/delete")
     public String deleteTODOList(@PathVariable("id") Long id) {
         todoListService.deleteTODOList(id);
-        return "redirect:/todolist";
+        return "redirect:/";
     }
+
+
 }

@@ -21,9 +21,7 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long taskId;
     private String name;
-    private String description;
     private boolean completed;
-    private LocalDateTime creationDate;
     @ManyToOne
     @JoinColumn(name = "list_id", nullable = false) // Relación con TODOList, columna de clave foránea
     private TODOList todoList;

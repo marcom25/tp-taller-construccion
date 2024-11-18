@@ -10,37 +10,42 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/tasks")
 public class TaskController {
 
     @Autowired
     private TaskService taskService;
 
-    @GetMapping
-    public String getAllTasks(Model model) {
-        model.addAttribute("tasks", taskService.getAllTasks());
-        return "task_list"; // Vista con la lista de tareas
-    }
+//    @GetMapping
+//    public String getAllTasks(Model model) {
+//        model.addAttribute("tasks", taskService.getAllTasks());
+//        return "task_list"; // Vista con la lista de tareas
+//    }
 
-    @GetMapping("/{id}")
-    public String getTaskById(@PathVariable("id") Long id, Model model) {
-        Optional<Task> task = taskService.getTaskById(id);
-        if (task.isPresent()) {
-            model.addAttribute("task", task.get());
-            return "task_detail"; // Vista para detalles de la tarea
-        }
-        return "task_not_found"; // Vista de error
-    }
+//    @GetMapping("/{id}")
+//    public String getTaskById(@PathVariable("id") Long id, Model model) {
+//        Optional<Task> task = taskService.getTaskById(id);
+//        if (task.isPresent()) {
+//            model.addAttribute("task", task.get());
+//            return "task_detail"; // Vista para detalles de la tarea
+//        }
+//        return "task_not_found"; // Vista de error
+//    }
+//
+//    @PostMapping
+//    public String createOrUpdateTask(@ModelAttribute Task task) {
+//        taskService.createOrUpdateTask(task);
+//        return "redirect:/tasks";
+//    }
 
-    @PostMapping
-    public String createOrUpdateTask(@ModelAttribute Task task) {
-        taskService.createOrUpdateTask(task);
-        return "redirect:/tasks";
+    @GetMapping("/{id}/toggle")
+    public String toggleTask(@PathVariable Long id){
+        taskService.toggleCompletion(id);
+        return "redirect:/";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteTask(@PathVariable("id") Long id) {
         taskService.deleteTask(id);
-        return "redirect:/tasks";
+        return "redirect:/";
     }
 }

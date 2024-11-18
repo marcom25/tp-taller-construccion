@@ -22,6 +22,12 @@ public class TODOListService {
         return todoListRepository.findById(id);
     }
 
+    public void createTODOList(String name) {
+        TODOList newTODOList = new TODOList();
+        newTODOList.setName(name);
+        todoListRepository.save(newTODOList);
+    }
+
     public TODOList createOrUpdateTODOList(TODOList todoList) {
         return todoListRepository.save(todoList);
     }

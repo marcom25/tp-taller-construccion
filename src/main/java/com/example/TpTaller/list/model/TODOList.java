@@ -21,8 +21,6 @@ public class TODOList {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long listId;
     private String name;
-    private LocalDateTime creationDate;
-    private boolean completed;
     @OneToMany(mappedBy = "todoList", cascade = CascadeType.ALL)
     private List<Task> taskList;
 }
