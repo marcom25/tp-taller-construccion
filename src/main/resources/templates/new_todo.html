@@ -54,18 +54,18 @@
     document.getElementById('add-task-btn').addEventListener('click', function () {
         const tasksContainer = document.getElementById('tasks-container');
 
-        // Crear un nuevo div para la tarea
+       
         const taskDiv = document.createElement('div');
         taskDiv.classList.add('mb-2');
 
-        // Crear el input para el nombre de la tarea
+       
         const taskInput = document.createElement('input');
         taskInput.type = 'text';
-        taskInput.name = `taskList[${taskIndex}].name`; // Index específico
+        taskInput.name = `taskList[${taskIndex}].name`; 
         taskInput.placeholder = 'Nombre de la tarea';
         taskInput.classList.add('form-control', 'mb-2', 'col-4');
 
-        // Crear el botón para eliminar la tarea
+        
         const removeTaskBtn = document.createElement('button');
         removeTaskBtn.type = 'button';
         removeTaskBtn.innerText = 'Eliminar';
@@ -74,14 +74,14 @@
             tasksContainer.removeChild(taskDiv);
         });
 
-        // Añadir el input y el botón al div de la tarea
+       
         taskDiv.appendChild(taskInput);
         taskDiv.appendChild(removeTaskBtn);
 
-        // Añadir el div de la tarea al contenedor
+      
         tasksContainer.appendChild(taskDiv);
 
-        // Incrementar el contador
+        
         taskIndex++;
     });
 </script>
