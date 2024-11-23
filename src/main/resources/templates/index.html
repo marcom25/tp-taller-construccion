@@ -4,10 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TP Taller Construccion de Software</title>
-    <description>TP Taller Construccion de Software, Agostina Heinzmann, Marco Mignacco, Alana Rios</description>
     <link rel="stylesheet" href="styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -24,17 +21,22 @@
     ></script>
   </head>
   <body class="area">
+
+
     <div class="context">
       <h1>
         Todo lo que necesitas, al alcance de tu
         <span class="title">lista de tareas</span>
       </h1>
-      <div class="input-group">
-        <input type="text" placeholder="Ingresar título de lista" />
-        <button class="add-button">Agregar</button>
-      </div>
-      <!-- ACA TENEMOS QUE AGREGAR UN FOR PARA CADA LISTA (cREO) -->
 
+
+        <a th:href="@{/newTodoListForm}" class="add-button" type="submit">Agregar +</a>
+
+      <div class="list-container">
+
+
+      <!-- ACA TENEMOS QUE AGREGAR UN FOR PARA CADA LISTA (cREO) -->
+      <th:block th:each="list : ${todoLists}">
       <div class="todo-container">
         <input
           type="checkbox"
@@ -42,14 +44,16 @@
           class="collapse-toggle context"
         />
         <div class="todo-header">
-          <h2 class="todo-title">{{ task-title }}</h2>
+          <h2 class="todo-title" th:text="${list.name}"></h2>
           <div class="todo-actions">
-            <button class="icon" aria-label="Edit list">
+            <a th:href="@{/updateTodoListForm/{id}(id=${list.listId})}" class="icon" aria-label="Edit list">
               <i class="fas fa-pencil"></i>
-            </button>
-            <button class="icon" aria-label="Delete list">
+              Editar
+            </a>
+            <a th:href="@{/deleteTodoList/{id}(id=${list.listId})}" class="icon" aria-label="Delete list">
               <i class="fas fa-trash"></i>
-            </button>
+              Borrar
+            </a>
             <label
               for="collapse-toggle"
               class="collapse-label icon"
@@ -60,27 +64,18 @@
           </div>
         </div>
         <div class="todo-content">
-          <ul class="task-list">
+          <ul class="task-list" >
+            <th:block th:each="task : ${list.taskList}">
             <!-- ACA TENEMOS QUE AGREGAR UN FOR PARA CADA TAREA (cREO) -->
             <li class="task-item">
-              <input type="checkbox" id="task1" class="task-checkbox" />
-              <p for="task1" class="task-label">{{ id.task.name }}</p>
-              <div class="task-actions">
-                <button class="icon" aria-label="Edit task">
-                  <i class="fas fa-pencil"></i>
-                </button>
-                <button class="icon" aria-label="Delete task">
-                  <i class="fas fa-trash"></i>
-                </button>
-              </div>
+              <p for="task1" class="task-label" th:text="${task.name}"></p>
             </li>
+            </th:block>
             <!-- ENDFOR -->
           </ul>
-          <div class="add-task">
-            <input type="text" placeholder="Agregar Tarea" />
-            <button class="add-button">+</button>
-          </div>
         </div>
+      </div>
+      </th:block>
       </div>
       <!-- ENDFOR -->
     </div>

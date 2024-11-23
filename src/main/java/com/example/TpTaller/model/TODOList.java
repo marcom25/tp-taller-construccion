@@ -1,13 +1,11 @@
-package com.example.TpTaller.list.model;
+package com.example.TpTaller.model;
 
-import com.example.TpTaller.task.model.Task;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
