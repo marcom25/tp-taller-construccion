@@ -18,7 +18,10 @@ public class Task {
     private Long taskId;
     private String name;
     private boolean completed;
+   
     @ManyToOne
-    @JoinColumn(name = "list_id", nullable = false) // Relación con TODOList, columna de clave foránea
+    @JoinColumn(name = "list_id", nullable = false) 
     private TODOList todoList;
+    @Transient
+    private boolean toBeDeleted;
 }

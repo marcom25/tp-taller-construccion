@@ -19,6 +19,6 @@ public class TODOList {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long listId;
     private String name;
-    @OneToMany(mappedBy = "todoList", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "todoList", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Task> taskList;
 }

@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TP Taller Construccion de Software</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Crear TODO</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -26,36 +26,30 @@
       <div class="context">
         <div class="card">
           <h2 class="title-newtodo">Nuevo TODO</h2>
-
           <form
             action="#"
             th:action="@{/createTodoList}"
             th:object="${todoList}"
             method="POST"
+            class="forms"
           >
-            <!-- Input para el nombre de la TODO -->
             <input
               type="text"
               th:field="*{name}"
               placeholder="Nombre de la TODO"
               class="form-control mb-4 col-4"
+              style="width: auto;"
             />
-
-            <!-- Contenedor para las tareas -->
             <div id="tasks-container" class="title-newtodo1">
               <h4>Tareas</h4>
-              <!-- Aquí se añadirán los inputs dinámicamente -->
-            </div>
 
-            <!-- Botón para agregar una nueva tarea -->
-            <button type="button" id="add-task-btn" class="add-button1">
+            </div>
+            <button type="button" id="add-task-btn" class="button success-button">
               Agregar Tarea
             </button>
-
-            <button type="submit" class="add-button1">Agregar TODO</button>
+            <button type="submit" class="button success-button">Agregar TODO</button>
           </form>
-
-          <a th:href="@{/}" class="add-button2"
+          <a th:href="@{/}" class="button primary-button"
             >Volver a la pantalla principal</a
           >
         </div>
@@ -76,7 +70,7 @@
   </body>
 
   <script>
-    let taskIndex = 0; // Contador de tareas
+    let taskIndex = 0;
 
     document
       .getElementById("add-task-btn")
@@ -84,7 +78,7 @@
         const tasksContainer = document.getElementById("tasks-container");
 
         const taskDiv = document.createElement("div");
-        taskDiv.classList.add("clase1");
+        taskDiv.classList.add("task-input-container");
 
         const taskInput = document.createElement("input");
         taskInput.type = "text";
@@ -95,7 +89,7 @@
         const removeTaskBtn = document.createElement("button");
         removeTaskBtn.type = "button";
         removeTaskBtn.innerHTML = '<i class="fas fa-trash"></i>';
-        removeTaskBtn.classList.add("btn", "btn-danger", "col-2", "ml-2");
+        removeTaskBtn.classList.add("icon", "icon-danger", "col-2", "ml-2");
         removeTaskBtn.addEventListener("click", function () {
           tasksContainer.removeChild(taskDiv);
         });

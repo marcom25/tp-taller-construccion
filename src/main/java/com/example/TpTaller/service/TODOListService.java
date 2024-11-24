@@ -19,13 +19,8 @@ public class TODOListService {
     }
 
     public TODOList getTODOListById(Long id) {
-        Optional<TODOList> opTodoList = todoListRepository.findById(id);
-        TODOList todoList = null;
-        if (opTodoList.isEmpty()) {
-            throw new RuntimeException("TODO No encontrado");
-        }
-        todoList = opTodoList.get();
-        return todoList;
+        return todoListRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("TODOList no encontrada con id: " + id));
     }
 
     public void createTODOList(TODOList todoList) {
@@ -35,4 +30,5 @@ public class TODOListService {
     public void deleteTODOList(Long id) {
         todoListRepository.deleteById(id);
     }
+
 }
