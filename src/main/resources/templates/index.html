@@ -28,7 +28,7 @@
       </h1>
 
       <a th:href="@{/newTodoListForm}" class="add-button" type="submit"
-        >Agregar +</a
+        >Agregar tarea</a
       >
 
       <div class="list-container">
@@ -48,16 +48,14 @@
                   class="icon"
                   aria-label="Edit list"
                 >
-                  <i class="fas fa-pencil"></i>
-                  Editar
+                  <i class="fas fa-pencil"> </i>
                 </a>
                 <a
                   th:href="@{/deleteTodoList/{id}(id=${list.listId})}"
                   class="icon"
                   aria-label="Delete list"
                 >
-                  <i class="fas fa-trash"></i>
-                  Borrar
+                  <i class="fas fa-trash"> </i>
                 </a>
                 <label
                   for="collapse-toggle"

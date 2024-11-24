@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TP Taller Construccion de Software</title>
@@ -9,81 +8,104 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-            href="https://fonts.googleapis.com/css2?family=Borel&family=Pacifico&display=swap"
-            rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Borel&family=Pacifico&display=swap"
+      rel="stylesheet"
     />
     <link
-            href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
-            rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
     />
     <script
-            src="https://kit.fontawesome.com/491d01e537.js"
-            crossorigin="anonymous"
+      src="https://kit.fontawesome.com/491d01e537.js"
+      crossorigin="anonymous"
     ></script>
-</head>
+  </head>
 
-<body>
-<div class="container">
+  <body class="area">
+    <div class="container">
+      <div class="context">
+        <div class="card">
+          <h2 class="title-newtodo">Nuevo TODO</h2>
 
-    <h2>Nuevo TODO</h2>
+          <form
+            action="#"
+            th:action="@{/createTodoList}"
+            th:object="${todoList}"
+            method="POST"
+          >
+            <!-- Input para el nombre de la TODO -->
+            <input
+              type="text"
+              th:field="*{name}"
+              placeholder="Nombre de la TODO"
+              class="form-control mb-4 col-4"
+            />
 
-    <form action="#" th:action="@{/createTodoList}" th:object="${todoList}" method="POST">
-        <!-- Input para el nombre de la TODO -->
-        <input type="text" th:field="*{name}" placeholder="Nombre de la TODO" class="form-control mb-4 col-4">
+            <!-- Contenedor para las tareas -->
+            <div id="tasks-container" class="title-newtodo1">
+              <h4>Tareas</h4>
+              <!-- Aquí se añadirán los inputs dinámicamente -->
+            </div>
 
-        <!-- Contenedor para las tareas -->
-        <div id="tasks-container" class="mb-4">
-            <h4>Tareas</h4>
-            <!-- Aquí se añadirán los inputs dinámicamente -->
+            <!-- Botón para agregar una nueva tarea -->
+            <button type="button" id="add-task-btn" class="add-button1">
+              Agregar Tarea
+            </button>
+
+            <button type="submit" class="add-button1">Agregar TODO</button>
+          </form>
+
+          <a th:href="@{/}" class="add-button2"
+            >Volver a la pantalla principal</a
+          >
         </div>
+      </div>
+    </div>
+    <ul class="circles">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </body>
 
-        <!-- Botón para agregar una nueva tarea -->
-        <button type="button" id="add-task-btn" class="btn btn-secondary mb-4">Agregar Tarea</button>
-
-        <button type="submit" class="btn btn-info col-2">Agregar TODO</button>
-    </form>
-
-
-    <a th:href="@{/}">Volver a la pantalla principal</a>
-</div>
-</body>
-
-<script>
+  <script>
     let taskIndex = 0; // Contador de tareas
 
-    document.getElementById('add-task-btn').addEventListener('click', function () {
-        const tasksContainer = document.getElementById('tasks-container');
+    document
+      .getElementById("add-task-btn")
+      .addEventListener("click", function () {
+        const tasksContainer = document.getElementById("tasks-container");
 
-       
-        const taskDiv = document.createElement('div');
-        taskDiv.classList.add('mb-2');
+        const taskDiv = document.createElement("div");
+        taskDiv.classList.add("clase1");
 
-       
-        const taskInput = document.createElement('input');
-        taskInput.type = 'text';
-        taskInput.name = `taskList[${taskIndex}].name`; 
-        taskInput.placeholder = 'Nombre de la tarea';
-        taskInput.classList.add('form-control', 'mb-2', 'col-4');
+        const taskInput = document.createElement("input");
+        taskInput.type = "text";
+        taskInput.name = `taskList[${taskIndex}].name`;
+        taskInput.placeholder = "Nombre de la tarea";
+        taskInput.classList.add("form-control", "mb-2", "col-4");
 
-        
-        const removeTaskBtn = document.createElement('button');
-        removeTaskBtn.type = 'button';
-        removeTaskBtn.innerText = 'Eliminar';
-        removeTaskBtn.classList.add('btn', 'btn-danger', 'col-2', 'ml-2');
-        removeTaskBtn.addEventListener('click', function () {
-            tasksContainer.removeChild(taskDiv);
+        const removeTaskBtn = document.createElement("button");
+        removeTaskBtn.type = "button";
+        removeTaskBtn.innerHTML = '<i class="fas fa-trash"></i>';
+        removeTaskBtn.classList.add("btn", "btn-danger", "col-2", "ml-2");
+        removeTaskBtn.addEventListener("click", function () {
+          tasksContainer.removeChild(taskDiv);
         });
 
-       
         taskDiv.appendChild(taskInput);
         taskDiv.appendChild(removeTaskBtn);
 
-      
         tasksContainer.appendChild(taskDiv);
 
-        
         taskIndex++;
-    });
-</script>
-
+      });
+  </script>
 </html>
